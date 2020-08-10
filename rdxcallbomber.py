@@ -1,6 +1,8 @@
 # --------------------------------------------------------  RDX ATTACK PROGRAM -----------------------------------
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from subprocess import Popen, PIPE
 import time
 import  random
 import os
@@ -18,11 +20,11 @@ fq = args.fq
 
 # --------------------         MAIN PROGRAM           -------------------------
 
-# os.system("heroku run:detached python changeworker.py add rdxbomb -app rdxbomb")
 
 options = Options()
 
-options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+# options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+options.binary_location = "/usr/bin/google-chrome"
 
 options.add_argument('--headless')
 
@@ -33,8 +35,9 @@ options.add_argument('--no-sandbox')
 # -------------------------------------------------------
 # options.add_argument('--disable-gpu')
 
+# browser = webdriver.Chrome(executable_path="/usr/bin/chromedriver",options=options)
 
-browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
+browser = webdriver.Chrome(ChromeDriverManager().install(),options=options)
 # browser = webdriver.Chrome()
 
 
